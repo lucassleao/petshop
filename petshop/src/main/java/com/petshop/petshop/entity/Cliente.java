@@ -2,6 +2,7 @@ package com.petshop.petshop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,29 +14,32 @@ import java.util.List;
 @Setter
 public class Cliente {
 
-    // chave primária gerada automaticamente
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // nome do cliente - obrigatório
+    // @NotBlank = não pode ser nulo nem vazio nem só espaços
+    @NotBlank(message = "Nome é obrigatório")
+    @Size(min = 2, max = 100, message = "Nome deve ter entre 2 e 100 caracteres")
     @Column(nullable = false)
     private String nome;
 
-    // CPF único - não pode repetir
+    // @Pattern = valida o formato do CPF
+    @NotBlank(message = "CPF é obrigatório")
     @Column(nullable = false, unique = true)
     private String cpf;
 
-    // email único - não pode repetir
+    // @Email = valida se é um email válido
+    @NotBlank(message = "Email é obrigatório")
+    @Email(message = "Email inválido")
     @Column(nullable = false, unique = true)
     private String email;
 
-    // telefone do cliente
+    // @Size = limita o tamanho do campo
+    @NotBlank(message = "Telefone é obrigatório")
+    @Size(min = 8, max = 20, message = "Telefone inválido")
     private String telefone;
 
-    // um cliente pode ter muitos pets
-    // mappedBy = "cliente" indica que o lado dono do relacionamento é o Pet
-    // @JsonIgnore evita loop infinito na conversão pra JSON
     @OneToMany(mappedBy = "cliente")
     @JsonIgnore
     private List<Pet> pets;

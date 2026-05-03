@@ -1,8 +1,12 @@
 package com.petshop.petshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "pets")
@@ -10,30 +14,36 @@ import lombok.Setter;
 @Setter
 public class Pet {
 
-    // chave primária gerada automaticamente
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // cliente dono do pet - obrigatório
+    @NotNull(message = "Cliente é obrigatório")
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
     // nome do pet - obrigatório
+    @NotBlank(message = "Nome do pet é obrigatório")
+    @Size(min = 2, max = 50, message = "Nome deve ter entre 2 e 50 caracteres")
     @Column(nullable = false)
     private String nome;
 
-    // espécie do animal (ex: cachorro, gato)
+    // espécie - obrigatório
+    @NotBlank(message = "Espécie é obrigatória")
     @Column(nullable = false)
     private String especie;
 
-    // raça do animal (ex: labrador, persa)
+    // raça - opcional
     private String raca;
 
-    // peso em kg
+    // peso - deve ser positivo
+    @Positive(message = "Peso deve ser maior que zero")
     private Double peso;
 
-    // @ManyToOne = muitos pets podem pertencer a um cliente
-    // um cliente pode ter vários pets, mas cada pet tem só um dono
-    @ManyToOne
-    // @JoinColumn = define a coluna de chave estrangeira na tabela pets
-    // vai criar uma coluna "cliente_id" que referencia a tabela clientes
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private Cliente cliente;
+    // lista de agendamentos do pet
+    @OneToMany(mappedBy = "pet")
+    @JsonIgnore
+    private List<Agendamento> agendamentos;
 }
