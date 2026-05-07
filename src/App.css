@@ -1,0 +1,200 @@
+/* ===== RESET E BASE ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FDF6EC; /* fundo creme combinando com o dashboard */
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+/* ===== MENU LATERAL ===== */
+.menu-logo {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 8px;
+}
+
+.menu-logo h4 {
+  color: #e94560;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.menu-logo span {
+  color: rgba(255,255,255,0.75); /* era 0.4 — agora mais visível */
+  font-size: 11px;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ===== PÁGINA ===== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06) !important;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+}
+
+.card-header {
+  border-radius: 12px 12px 0 0 !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+  font-weight: 600;
+  padding: 14px 20px !important;
+}
+
+/* ===== TABELAS ===== */
+.table {
+  margin: 0 !important;
+}
+
+.table thead th {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 16px !important;
+  border: none !important;
+}
+
+.table tbody td {
+  padding: 14px 16px !important;
+  vertical-align: middle !important;
+  border-color: #f0f2f5 !important;
+  font-size: 14px;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f9ff !important;
+  cursor: default;
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  padding: 8px 16px !important;
+  transition: all 0.2s !important;
+}
+
+.btn-primary {
+  background: #e94560 !important;
+  border-color: #e94560 !important;
+}
+
+.btn-primary:hover {
+  background: #c73652 !important;
+  border-color: #c73652 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(233,69,96,0.3) !important;
+}
+
+.btn-success {
+  background: #28a745 !important;
+  border-color: #28a745 !important;
+}
+
+.btn-success:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(40,167,69,0.3) !important;
+}
+
+.btn-sm {
+  padding: 5px 12px !important;
+  font-size: 12px !important;
+}
+
+/* ===== FORMULÁRIOS ===== */
+.form-control, .form-select {
+  border-radius: 8px !important;
+  border: 1.5px solid #e0e3e9 !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #e94560 !important;
+  box-shadow: 0 0 0 3px rgba(233,69,96,0.1) !important;
+}
+
+.form-label {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #555 !important;
+  margin-bottom: 6px !important;
+}
+
+/* ===== ALERTAS ===== */
+.alert {
+  border-radius: 10px !important;
+  border: none !important;
+  font-size: 14px;
+}
+
+/* ===== BADGES ===== */
+.badge-status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  display: inline-block;
+}
+
+/* ===== ROW FIX ===== */
+.row {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* Logo visível */
+.menu-logo h4 {
+  color: #e94560 !important;
+}
