@@ -1,0 +1,101 @@
+Table usuarios {
+  id bigint [pk, increment]
+  email varchar [unique, not null]
+  senha varchar [not null]
+  nome varchar [not null]
+  perfil varchar [not null, note: 'ADMIN, GERENTE, FUNCIONARIO, CLIENTE']
+  funcionario_id bigint [null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table clientes {
+  id bigint [pk, increment]
+  nome varchar [not null]
+  cpf varchar [unique, not null]
+  email varchar [not null]
+  telefone varchar [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table funcionarios {
+  id bigint [pk, increment]
+  nome varchar [not null]
+  cpf varchar [unique, not null]
+  email varchar [not null]
+  telefone varchar [not null]
+  cargo varchar [not null]
+  salario decimal(10,2) [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table pets {
+  id bigint [pk, increment]
+  nome varchar [not null]
+  especie varchar [not null]
+  raca varchar [null]
+  idade int [null]
+  peso decimal(5,2) [null]
+  cliente_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table produtos {
+  id bigint [pk, increment]
+  nome varchar [not null]
+  categoria varchar [not null]
+  preco decimal(10,2) [not null]
+  quantidade_estoque int [default: 0]
+  estoque_minimo int [default: 5]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table agendamentos {
+  id bigint [pk, increment]
+  pet_id bigint [not null]
+  funcionario_id bigint [not null]
+  tipo_servico varchar [not null, note: 'Banho, Tosa, Consulta, Vacinação']
+  data_hora timestamp [not null]
+  observacoes text [null]
+  status varchar [not null, note: 'AGENDADO, CONCLUIDO, CANCELADO']
+  valor decimal(10,2) [null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table vendas {
+  id bigint [pk, increment]
+  cliente_id bigint [not null]
+  funcionario_id bigint [null]
+  total decimal(10,2) [default: 0]
+  forma_pagamento varchar [null, note: 'PIX, DINHEIRO, CARTAO']
+  status varchar [not null, note: 'ABERTA, FINALIZADA, CANCELADA']
+  data_hora timestamp [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table itens_venda {
+  id bigint [pk, increment]
+  venda_id bigint [not null]
+  produto_id bigint [not null]
+  quantidade int [not null]
+  valor_unitario decimal(10,2) [not null]
+  valor_total decimal(10,2) [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+// Relacionamentos
+Ref: usuarios.funcionario_id > funcionarios.id
+Ref: pets.cliente_id > clientes.id
+Ref: agendamentos.pet_id > pets.id
+Ref: agendamentos.funcionario_id > funcionarios.id
+Ref: vendas.cliente_id > clientes.id
+Ref: vendas.funcionario_id > funcionarios.id
+Ref: itens_venda.venda_id > vendas.id
+Ref: itens_venda.produto_id > produtos.id
