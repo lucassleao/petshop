@@ -14,7 +14,7 @@ Sistema completo para gerenciamento de pet shop desenvolvido com Java Spring Boo
 ### Frontend
 - React
 - Bootstrap
-- Axios
+- Html
 
 ## 📋 Funcionalidades
 
